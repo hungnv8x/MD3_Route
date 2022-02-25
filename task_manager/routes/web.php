@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +25,14 @@ Route::prefix('customer')->group(function () {
     });
 
     Route::get('create', function () {
-        // Hiển thị Form tạo khách hàng
+        return view('modules.customer.create');
     });
 
-    Route::post('store', function () {
-        // Xử lý lưu dữ liệu tạo khách hàng thong qua phương thức POST từ form
-    });
+    Route::post('create',[CustomerController::class,'create']);
 
-    Route::get('{id}/show', function () {
-        // Hiển thị thông tin chi tiết khách hàng có mã định danh id
-    });
+    Route::get('{id}/show',[CustomerController::class,'detail']);
 
-    Route::get('{id}/edit', function () {
-        // Hiển thị Form chỉnh sửa thông tin khách hàng
-    });
+    Route::get('{id}/edit', [CustomerController::class,'showEdit']);
 
     Route::patch('{id}/update', function () {
         // xử lý lưu dữ liệu thông tin khách hàng được chỉnh sửa thông qua PATCH từ form
